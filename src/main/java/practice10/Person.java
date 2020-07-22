@@ -46,7 +46,7 @@ public class Person {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;
-        practice09.Person person = (practice09.Person) o;
+        Person person = (Person) o;
         return Objects.equals(id, person.getId());
     }
 }
