@@ -1,7 +1,5 @@
 package practice11;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +35,7 @@ public class Klass {
         }
     }
 
-    public  Student getLeader() {
+    public Student getLeader() {
         return leader;
     }
 

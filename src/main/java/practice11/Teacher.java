@@ -1,15 +1,14 @@
 package practice11;
 
-
-
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Teacher extends Person implements TeacherWatcher{
 
     private List<Klass> classes;
-
 
     public Teacher(int id, String name, int age,  List< Klass> klass) {
         super(id, name, age);
@@ -32,27 +31,26 @@ public class Teacher extends Person implements TeacherWatcher{
 
     @Override
     public String introduce() {
-        String klassStr = "";
+        String introduceMsg = super.introduce();
+        StringBuilder klassStr = new StringBuilder("");
         if(classes.size() == 0) {
-            return super.introduce()+" I am a Teacher. " +"I teach No Class.";
+            return introduceMsg.concat(" I am a Teacher. I teach No Class.");
         }
         for(int i = 0; i < classes.size(); i++) {
             if(i != 0) {
-                klassStr += ", ";
+                klassStr.append(", ") ;
             }
-            klassStr += classes.get(i).getNumber();
+            klassStr.append( classes.get(i).getNumber());
         }
-        return super.introduce()+" I am a Teacher. " + (  "I teach Class "+klassStr+"." );
+
+        Integer[] list =    classes.stream().map(Klass::getNumber).toArray(Integer[]::new);
+
+        return introduceMsg.concat(MessageFormat.format(" I am a Teacher. I teach Class {0}.",klassStr));
     }
 
     public String introduceWith( Student student) {
-        for( Klass klass : classes) {
-            if(student.getKlass().getNumber() == klass.getNumber()) {
-                return super.introduce()+" I am a Teacher. "+"I teach "+ student.getName()+".";
-            }
-        }
 
-        return super.introduce()+" I am a Teacher. "+"I don't teach "+ student.getName()+".";
+        return isIn(student) ? super.introduce().concat(MessageFormat.format(" I am a Teacher. I teach {0}.",student.getName())) : super.introduce().concat(" I am a Teacher. I don't teach ").concat(MessageFormat.format("{0}.",student.getName()));
     }
 
     public boolean isTeaching( Student student){
@@ -61,12 +59,8 @@ public class Teacher extends Person implements TeacherWatcher{
     }
 
     private boolean isIn( Student student) {
-        for (Klass klass : classes){
-            if(klass.getNumber() == student.getKlass().getNumber()){
-                return true;
-            }
-        }
-        return false;
+
+        return classes.stream().anyMatch(o -> o.getNumber() == student.getKlass().getNumber());
     }
 
     @Override
