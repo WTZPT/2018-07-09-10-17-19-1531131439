@@ -16,7 +16,7 @@ public class Practice11Test {
     @Before
     public void setup() {
         klass2 = new Klass(2);
-       System.setOut(new PrintStream(outContent));
+        System.setOut(new PrintStream(outContent));
     }
 
     @Test

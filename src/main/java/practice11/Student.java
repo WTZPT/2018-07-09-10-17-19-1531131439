@@ -3,27 +3,23 @@ package practice11;
 
 import java.text.MessageFormat;
 
-public class Student extends Person{
-    private  Klass klass;
+public class Student extends Person {
+    private Klass klass;
 
-    public Student(int id, String name, int age,  Klass klass) {
+    public Student(int id, String name, int age, Klass klass) {
         super(id, name, age);
         this.klass = klass;
     }
 
-    public  Klass getKlass() {
+    public Klass getKlass() {
         return klass;
-    }
-
-    public void setKlass(Klass klass) {
-        this.klass = klass;
     }
 
     @Override
     public String introduce() {
         String introduceMessage = null;
-        if(this.klass.getLeader() == this) {
-             introduceMessage = super.introduce()
+        if (this.klass.getLeader() == this) {
+            introduceMessage = super.introduce()
                     .concat(
                             MessageFormat.format(
                                     " I am a Student. I am Leader of Class {0}.",
@@ -33,10 +29,10 @@ public class Student extends Person{
         } else {
             introduceMessage = super.introduce()
                     .concat(
-                      MessageFormat.format(
-                              " I am a Student. I am at Class {0}.",
-                              this.klass.getNumber()
-                      )
+                            MessageFormat.format(
+                                    " I am a Student. I am at Class {0}.",
+                                    this.klass.getNumber()
+                            )
                     );
         }
 

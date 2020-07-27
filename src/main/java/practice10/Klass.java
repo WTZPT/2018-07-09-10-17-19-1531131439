@@ -6,8 +6,9 @@ import java.util.List;
 
 public class Klass {
     private int number;
-    private  Student leader;
+    private Student leader;
     private List<Student> studentList;
+
     public Klass(int number) {
         this.number = number;
         studentList = new ArrayList<>();
@@ -17,29 +18,21 @@ public class Klass {
         return number;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
     public String getDisplayName() {
-        return "Class "+this.number;
+        return "Class " + this.number;
     }
 
     public void assignLeader(Student student) {
 
-        if(checkStudent(student)) {
+        if (checkStudent(student)) {
             this.leader = student;
         } else {
-            System.out.print("It is not one of us.");
+            System.out.print("It is not one of us.\n");
         }
     }
 
-    public  Student getLeader() {
+    public Student getLeader() {
         return leader;
-    }
-
-    public void setLeader(Student leader) {
-        this.leader = leader;
     }
 
     public void appendMember(Student student) {
@@ -48,7 +41,7 @@ public class Klass {
 
     private boolean checkStudent(Student student) {
         for (int i = 0; i < this.studentList.size(); i++) {
-            if(student.equals(this.studentList.get(i))) {
+            if (student.equals(this.studentList.get(i))) {
                 return true;
             }
         }

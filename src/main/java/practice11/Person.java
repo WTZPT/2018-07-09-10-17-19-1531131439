@@ -1,7 +1,6 @@
 package practice11;
 
 
-
 import java.text.MessageFormat;
 import java.util.Objects;
 
@@ -20,37 +19,29 @@ public class Person {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Integer getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
     public String introduce() {
 
-        return MessageFormat.format("My name is {0}. I am {1} years old.",this.name,this.age);
+        return MessageFormat.format("My name is {0}. I am {1} years old.", this.name, this.age);
     }
 
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        Person person = ( Person) o;
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        Person person = (Person) o;
         return Objects.equals(id, person.getId());
     }
 }
